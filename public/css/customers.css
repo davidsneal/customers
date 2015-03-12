@@ -1,0 +1,7 @@
+.navbar {
+	border-radius: 0;
+}
+.label-required:after {
+	content: " *";
+	color: #e74c3c;
+}
