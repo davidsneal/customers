@@ -19,11 +19,34 @@ class CustomerController extends Controller {
 	 */
 	public function index()
 	{
-		// get all customers
-		$customers = Customer::paginate(5);
+		// get search input
+		$search = Request::input('search');
+	
+		// if a search isset an not empty
+		if(isset($search) AND ! empty($search))
+		{
+			// get articles and paginate
+			$customers = Customer::where('last_name', 'LIKE', '%'.$search.'%')
+							     ->orWhere('first_name', 'LIKE', '%'.$search.'%')
+							     ->orWhere('address_1', 'LIKE', '%'.$search.'%')
+							     ->orWhere('town', 'LIKE', '%'.$search.'%')
+							     ->orWhere('postcode', 'LIKE', '%'.$search.'%')
+							     ->orWhere('email', 'LIKE', '%'.$search.'%')
+							     ->orderBy('created_at', 'desc')
+							     ->paginate(10);
+			
+			// append pagination links to maintain search   
+			$customers->appends(['search' => $search]);
+		}
+		// no search set
+		else
+		{
+			// get all customers
+			$customers = Customer::paginate(10);
+		}
 		
 		// return the customers index page
-		return view('customers.index', ['customers' => $customers]);
+		return view('customers.index', ['customers' => $customers, 'search' => $search]);
 	}
 
 	/**
@@ -31,7 +54,7 @@ class CustomerController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id = 0)
 	{
 		// get posted inputs
 		$data = Request::input('data');
@@ -73,8 +96,8 @@ class CustomerController extends Controller {
 				));
 		}
 
-		// if no id is set
-		if(empty($data['id']))
+		// if id is 0
+		if($data['id'] == 0)
 		{
 			// initiate class
 			$customer = new Customer;

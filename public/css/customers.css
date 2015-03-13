@@ -5,6 +5,16 @@ body {
 .navbar {
 	border-radius: 0;
 }
+.heading-search {
+	margin-top:10px;
+}
+
+/* hide search from smaller devices */
+@media all and (max-width:800px) {
+	.form-heading {
+		display: none;
+	}
+}
 
 /* Edit screen */
 .label-required:after {

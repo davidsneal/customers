@@ -13,4 +13,5 @@ A **Laravel-powered** web application, created purely for demonstration purposes
 - Copy the **_.env.example_** file and name it **_.env_**
 - Edit your new **_.env_** file, setting the necessary database connection details
 - Run the command: `php artisan migrate`
+- Run the command: `php artisan db:seed` if you wish to create 100 random customers
 - Visit [http://customers.local/auth/register](http://customers.local/auth/register) and create a new user

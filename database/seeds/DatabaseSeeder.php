@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		// $this->call('UserTableSeeder');
+		// generate random customers
+		$this->call('CustomerTableSeeder');
 	}
 
 }
