@@ -9,18 +9,22 @@
 			  <thead>
 			    <tr>
 			      <th>#</th>
-			      <th>Column heading</th>
-			      <th>Column heading</th>
-			      <th>Column heading</th>
+			      <th>Last Name</th>
+			      <th>Address 1</th>
+			      <th>Town</th>
+			      <th>Postcode</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
-			      <td>1</td>
-			      <td>Column content</td>
-			      <td>Column content</td>
-			      <td>Column content</td>
-			    </tr>
+				  	@foreach($customers as $customer)
+					    <tr>
+					      <td>{{ $customer->id }}</td>
+					      <td>{{ $customer->last_name }}</td>
+					      <td>{{ $customer->address_1 }}</td>
+					      <td>{{ $customer->town }}</td>
+					      <td>{{ $customer->postcode }}</td>
+					    </tr>
+					@endforeach
 			  </tbody>
 			</table>
 		</div>

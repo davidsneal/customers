@@ -3,9 +3,12 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
-
+// added to keep controller cleaner
 use App\Customer;
+use Request;
+use Validator;
+use Response;
+use View;
 
 class CustomerController extends Controller {
 
@@ -20,7 +23,7 @@ class CustomerController extends Controller {
 		$customers = Customer::paginate(5);
 		
 		// return the customers index page
-		return view('customers.index');
+		return view('customers.index', ['customers' => $customers]);
 	}
 
 	/**
@@ -30,7 +33,90 @@ class CustomerController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		// get posted inputs
+		$data = Request::input('data');
+		parse_str($data, $data);
+
+		// prepare for validation
+		$validator = Validator::make(
+		    array(
+		    	'first_name' => $data['first_name'],
+		    	'last_name'  => $data['last_name'],
+		    	'address_1'  => $data['address_1'],
+		    	'address_2'  => $data['address_2'],
+		    	'town' 		 => $data['town'],
+		    	'county' 	 => $data['county'],
+		    	'postcode' 	 => $data['postcode'],
+		    	'age' 		 => $data['age'],
+		    	'email' 	 => $data['email']
+		    ),
+		    array(
+		    	'first_name' => 'max:50',
+		    	'last_name'  => 'required|max:50',
+		    	'address_1'  => 'required|max:50',
+		    	'address_2'  => 'max:50',
+		    	'town' 		 => 'required|max:50',
+		    	'county' 	 => 'max:50',
+		    	'postcode' 	 => 'required|max:10',
+		    	'age' 		 => 'max:3',
+		    	'email' 	 => 'email'
+		    )
+		);
+
+		// if validation fails
+		if ($validator->fails())
+		{
+			return Response::json(array(
+				'status' => 'error',
+				'message' => 'Posted fields failed validation',
+				'alert_class' => 'alert-warning',
+				));
+		}
+
+		// if no id is set
+		if(empty($data['id']))
+		{
+			// initiate class
+			$customer = new Customer;
+		}
+		// or we're updating an existing customer
+		else
+		{
+			// get the existing customer as an object
+			$customer = Customer::find($data['id']);
+		}
+		
+		// prepare data	
+		$customer->first_name 	= $data['first_name'];
+    	$customer->last_name 	= $data['last_name'];
+    	$customer->address_1  	= $data['address_1'];
+    	$customer->address_2  	= $data['address_2'];
+    	$customer->town		 	= $data['town'];
+    	$customer->county 	 	= $data['county'];
+    	$customer->postcode 	= $data['postcode'];
+    	$customer->age	 		= (empty($data['age']) ? NULL : $data['age']);
+    	$customer->email	 	= $data['email'];
+		
+		// if saved successfully
+		if($customer->save())
+		{
+			// return success alert and redirect
+			return Response::json(array(
+				'status' 		=> 'success',
+				'redirect'		=> '/admin/customers/edit/'.$customer->id,
+				'message' 		=> 'Customer saved',
+				'alert_class' 	=> 'alert-success',
+				));
+		}
+		// failed to save
+		else
+		{
+			return Response::json(array(
+				'status' => 'error',
+				'message' => 'Failed to save the customer',
+				'alert_class' => 'alert-danger',
+				));
+		}
 	}
 
 	/**
@@ -65,8 +151,18 @@ class CustomerController extends Controller {
 		// typecast if needed
 		$id = (int) $id;
 		
-		// get customer
-		$customer = Customer::find($id);
+		// if no id is set
+		if($id == 0)
+		{
+			// initiate class
+			$customer = new Customer;
+		}
+		// or we're updating an existing customer
+		else
+		{
+			// get the existing customer as an object
+			$customer = Customer::find($id);
+		}
 		
 		// creating new or editing existing
 		if($id === 0 || ! empty($customer))

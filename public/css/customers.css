@@ -1,7 +1,30 @@
+/* Main */
+body {
+	padding-bottom: 100px;
+}
 .navbar {
 	border-radius: 0;
 }
+
+/* Edit screen */
 .label-required:after {
 	content: " *";
 	color: #e74c3c;
+}
+.btn-submit {
+	width: 90px;
+}
+.custom-alert {
+    text-align: center;
+    display:none;
+    padding: 18px!important;
+    position:fixed;
+    width:100%;
+    border-radius: 0!important;
+    bottom:0;
+    left:0;
+    z-index: 999999;
+    min-height: 55px;
+    margin-bottom:0;
+    font-weight: bold;
 }

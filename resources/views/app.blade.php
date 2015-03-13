@@ -6,11 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Customers</title>
 
+	<!-- CSS -->
 	<link href="/css/app.css" rel="stylesheet">
 	<link href="/css/customers.css" rel="stylesheet">
 
-	<!-- Fonts -->
+	<!-- Fonts/icons -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,10 +64,16 @@
 	</nav>
 
 	@yield('content')
+	
+	<!-- Alert div ready if needed -->
+    <div id="custom-alert" class="custom-alert alert">
+      <span id="alert-content"></span>
+    </div>
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="/js/customers.js"></script>
 	<script src="/js/validator.js"></script>
 </body>
 </html>

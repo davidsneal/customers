@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function()
 		Route::get('/', 'HomeController@index');
 		Route::get('/customers', 'CustomerController@index');
 		Route::get('/customers/edit/{id?}', 'CustomerController@edit');
+		Route::post('/customers/create', 'CustomerController@create');
 	});
 });
 

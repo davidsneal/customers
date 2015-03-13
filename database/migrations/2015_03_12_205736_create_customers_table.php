@@ -22,7 +22,7 @@ class CreateCustomersTable extends Migration {
 			$table->string('town', 50);
 			$table->string('county', 50)->nullable();
 			$table->string('postcode', 10);
-			$table->integer('age');
+			$table->integer('age')->nullable();
 			$table->string('email', 50)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
