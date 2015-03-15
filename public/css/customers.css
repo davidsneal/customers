@@ -10,7 +10,7 @@ body {
 }
 
 /* hide search from smaller devices */
-@media all and (max-width:800px) {
+@media all and (max-width: 800px) {
 	.form-heading {
 		display: none;
 	}
@@ -59,4 +59,16 @@ body {
 }
 .modal-body {
 	overflow: auto;
+}
+
+/* resize gravatars with media queries */
+@media all and (max-width: 800px) {
+	.gravatar-list li {
+		width: 10%;
+	}
+}
+@media all and (max-width: 600px) {
+	.gravatar-list li {
+		width: 20%;
+	}
 }
