@@ -38,3 +38,25 @@ body {
     margin-bottom:0;
     font-weight: bold;
 }
+
+/* Home screen gravatars */
+.gravatar-list {
+	padding-left: 0;
+	display: block;
+	margin: 0 auto;
+}
+.gravatar-list li {
+	list-style: none;
+	float: left;
+	height:auto;
+	width: 5%;
+}
+.gravatar-img {
+	cursor: pointer;
+	width: 100%;
+	max-width: 80px;
+	height:auto;
+}
+.modal-body {
+	overflow: auto;
+}

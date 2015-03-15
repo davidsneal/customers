@@ -22,7 +22,7 @@ class CustomerTableSeeder extends Seeder {
 	    'county' => $faker->state,
 	    'postcode' => $faker->postcode,
 	    'age' => rand(18, 65),
-	    'email' => $faker->email
+	    'email' => $faker->freeEmail
 	  ));
 	}
   }

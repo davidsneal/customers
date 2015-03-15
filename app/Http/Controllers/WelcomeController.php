@@ -1,4 +1,6 @@
 <?php namespace App\Http\Controllers;
+	
+use App\Customer;
 
 class WelcomeController extends Controller {
 
@@ -30,7 +32,13 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		// get some customers for the gravatar grid
+		$customers = Customer::take(60)
+							 ->orderBy('created_at', 'desc')
+							 ->get();
+		
+		// return the homepage
+		return view('welcome', ['customers' => $customers]);
 	}
 
 }

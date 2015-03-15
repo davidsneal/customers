@@ -1,5 +1,21 @@
 jQuery( document ).ready( function( $ ) {
 	
+	// gravatar clicked
+    $( '.gravatar-img' ).on( 'click', function(e) {
+		
+		// get data attributes needed
+		var name = $( this ).data( 'name' );
+		var src = $( this ).attr( 'src' );
+		var address = $( this ).data( 'address' );
+		var town = $( this ).data( 'town' );
+		
+		// replace modal content with clicked customer
+	    $("#customer-modal .modal-title").html( name );
+	    $("#customer-modal .modal-gravatar-img").attr( 'src', src );
+	    $("#customer-modal .modal-address").text( address );
+		
+    }); // end gravatar clicked
+	
 	// customer edit/create form submit
     $( '#form-customer' ).validator().on( 'submit', function(e) {
 	    
