@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-3 col-md-offset-1 well bs-component">
 			<h2>Information</h2>
-			<p>Please take a moment to complete the form. All fields that are <b>required</b> are flagged as such by a <span class="label-required"></span></p>
+			<p>Please take a moment to complete the form.</p><p>All fields that are <b>required</b> are flagged as such by a <span class="label-required"></span></p>
 		</div>
 		<div class="col-md-6 col-md-offset-1 well bs-component">
 			<form id="form-customer" method="post" action="/admin/customers/create" class="form-horizontal" data-toggle="validator" role="form">
