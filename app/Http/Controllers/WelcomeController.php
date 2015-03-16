@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 	
 use App\Customer;
+use Config;
 
 class WelcomeController extends Controller {
 
@@ -33,7 +34,7 @@ class WelcomeController extends Controller {
 	public function index()
 	{
 		// get some customers for the gravatar grid
-		$customers = Customer::take(60)
+		$customers = Customer::take(Config::get('settings.home_gravatars'))
 							 ->orderBy('created_at', 'desc')
 							 ->get();
 		

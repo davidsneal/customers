@@ -84,7 +84,7 @@
 			    </div>
 			    <div class="form-group">
 			      <div class="col-lg-8 col-lg-offset-4">
-			        <button type="submit" class="btn btn-success pull-right btn-submit">Submit</button>
+			        <button type="submit" class="btn btn-primary pull-right btn-submit">Submit</button>
 			      </div>
 			    </div>
 			  </fieldset>

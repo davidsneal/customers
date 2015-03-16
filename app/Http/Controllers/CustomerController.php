@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 // added to keep controller cleaner
 use App\Customer;
+use Config;
 use Request;
 use Validator;
 use Response;
@@ -42,7 +43,7 @@ class CustomerController extends Controller {
 		else
 		{
 			// get all customers
-			$customers = Customer::paginate(10);
+			$customers = Customer::paginate(Config::get('settings.perpage_admin'));
 		}
 		
 		// return the customers index page
