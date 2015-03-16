@@ -32,8 +32,6 @@ return [
 
 The number of Gravatars displayed on the homepage defaults to 60, change the value of the array element `home_gravatars` to your liking.
 
-![Image](/resources/assets/img/home.png)
-
 The number of customers displayed per page is taken from the value of the `perpage_admin` array element.
 
 ![Image](/resources/assets/img/perpage.png)
